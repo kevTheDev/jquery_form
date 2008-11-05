@@ -41,28 +41,83 @@ $(document).ready(function() {
 function displayPackageDetails(package_details) {
 	
 	switch(package_details) {
-		case "economy":
-		  $("#package_details").html("<p>ECONOMY SELECTED</p>");
+		case "economy":		  
+		  displayEconomyPackage();
 		break;
-		case "standard":
-		  $("#package_details").html("<p>standard SELECTED</p>");
+		case "standard":		  
+		  displayStandardPackage();
 		break;
-		case "priority":
-		  $("#package_details").html("<p>priority SELECTED</p>");
+		case "priority":		  
+		  displayPriorityPackage();
 		break;
-		case "express":
-		  $("#package_details").html("<p>express SELECTED</p>");
+		case "express":		  
+		  displayExpressPackage();
 		break;
-		case "special":
-		  $("#package_details").html("<p>special SELECTED</p>");
+		case "special":		  
+		  displaySpecialPackage();
 		break;
 	}
+
+}
+
+function displayEconomyPackage() {
 	
 	
+	html = "<label for='delivery_time'>Delivery Time: On Application</label><br />"
+	     + "<label for='initial_consultation'>Initial Consultation: Free</label><br />"
+	     + "<label for='delivery_guarantee'>Delivery Time & Budget Guarantee: Yes</label><br />"
+	     + "<label for='money_back_guarantee'>Money Back Satisfaction Guarantee: Yes</label><br />"
+	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
+	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
+	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 30 days</label><br />"
+	$("#package_details").html(html);
 	
 }
 
+function displayStandardPackage() {
+	
+	html = "<label for='delivery_time'>Delivery Time: Up to 1 month</label><br />"
+	     + "<label for='initial_consultation'>Initial Consultation: Free</label><br />"
+	     + "<label for='delivery_guarantee'>Delivery Time & Budget Guarantee: Yes</label><br />"
+	     + "<label for='money_back_guarantee'>Money Back Satisfaction Guarantee: Yes</label><br />"
+	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
+	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
+	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 2 months</label><br />"
+	$("#package_details").html(html);
+}
 
+function displayPriorityPackage() {
+	html = "<label for='delivery_time'>Delivery Time: Up to 2 weeks</label><br />"
+	     + "<label for='initial_consultation'>Initial Consultation: Free</label><br />"
+	     + "<label for='delivery_guarantee'>Delivery Time & Budget Guarantee: Yes</label><br />"
+	     + "<label for='money_back_guarantee'>Money Back Satisfaction Guarantee: Yes</label><br />"
+	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
+	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
+	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 3 months</label><br />"
+	$("#package_details").html(html);
+}
+
+function displayExpressPackage() {
+	html = "<label for='delivery_time'>Delivery Time: Up to 1 week</label><br />"
+	     + "<label for='initial_consultation'>Initial Consultation: Free</label><br />"
+	     + "<label for='delivery_guarantee'>Delivery Time & Budget Guarantee: Yes</label><br />"
+	     + "<label for='money_back_guarantee'>Money Back Satisfaction Guarantee: Yes</label><br />"
+	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
+	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
+	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 6 months</label><br />"
+	$("#package_details").html(html);
+}
+
+function displaySpecialPackage() {
+	html = "<label for='delivery_time'>Delivery Time: Up to 3 days</label><br />"
+	     + "<label for='initial_consultation'>Initial Consultation: Free</label><br />"
+	     + "<label for='delivery_guarantee'>Delivery Time & Budget Guarantee: Yes</label><br />"
+	     + "<label for='money_back_guarantee'>Money Back Satisfaction Guarantee: Yes</label><br />"
+	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
+	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
+	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 12 months</label><br />"
+	$("#package_details").html(html);
+}
 
 
 
