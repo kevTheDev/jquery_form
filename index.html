@@ -1,6 +1,7 @@
 <html>
   <head>
-    <script src="/jquery/jquery-1.2.6.min.js" type="text/javascript"></script>    
+    <script type="text/javascript" src="jquery/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript" src="jquery/form.js"></script>
   </head>
   <body>
     <h1>Hello World</h1>
@@ -8,18 +9,21 @@
     <div id="form_div">
       
       <form for="iteration" url="#" method="post">
-        <label for="budget_check">Budget
+        <label for="budget_check">Budget (&pound;10)
         </label>
-        <input type="radio" name="package" value="budget"  />
+        <input type="radio" name="package" value="budget" id="budget_check" />
         <br />
         
-        <label for="premium_check">Premium
+        <label for="premium_check">Premium (&pound;50)
         </label>
-        <input type="radio" name="package" value="premium"  />
+        <input type="radio" name="package" value="premium" id="premium_check" />
         <br />
       </form>
     </div>
     
+    <div>
+      <h4 id="iteration_total_cost_label">Total: &pound;<span id="iteration_total_cost"></span></label>
+    </div>
     
   </body>
 </html>
