@@ -1,10 +1,12 @@
 $(document).ready(function() { 
 	
-	setupPackageChoices();	
-  
+	standard_options = $("#standard_options").html();
+	setupPackageChoices(standard_options);	
+  //alert("SO: "+standard_options);
+  $("#standard_options").html("");
 });
 
-function setupPackageChoices() {
+function setupPackageChoices(standard_options) {
 	total_cost = $("#iteration_total_cost");
 	
 	package_choices = $(".package_choice");
@@ -18,28 +20,33 @@ function setupPackageChoices() {
 		cost = label.parseNumber();
 		
 		total_cost.text(""+cost);
-		displayPackageDetails(package_name);
-	})
+		displayPackageDetails(package_name, standard_options);
+	});
+
 	
 }
 
-function displayPackageDetails(package_details) {
+function displayPackageDetails(package_details, standard_options) {
+	
+	
+	
+	
 	
 	switch(package_details) {
 		case "economy":		  
-		  displayEconomyPackage();
+		  displayEconomyPackage(standard_options);
 		break;
 		case "standard":		  
-		  displayStandardPackage();
+		  displayStandardPackage(standard_options);
 		break;
 		case "priority":		  
-		  displayPriorityPackage();
+		  displayPriorityPackage(standard_options);
 		break;
 		case "express":		  
-		  displayExpressPackage();
+		  displayExpressPackage(standard_options);
 		break;
 		case "special":		  
-		  displaySpecialPackage();
+		  displaySpecialPackage(standard_options);
 		break;
 	}
 
@@ -148,19 +155,16 @@ function packageOptionHTML(option_name, cost, currently_included, option_title) 
 	       + "</p>"
 	}
 	
-	return html;
-	
+	return html;	
 }
 
-function displayEconomyPackage() {
+function standardPackageOptionHTML(option_name, option_title) {
+	return "<label for='" + option_name + "'>" + option_title + "</label><br />"
+}
 
-  html = "<label for='delivery_time'>Delivery Time: On Application</label><br />"
-	     + "<label for='initial_consultation'>Initial Consultation: Free</label><br />"
-	     + "<label for='delivery_guarantee'>Delivery Time & Budget Guarantee: Yes</label><br />"
-	     + "<label for='money_back_guarantee'>Money Back Satisfaction Guarantee: Yes</label><br />"
-	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
-	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
-	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 30 days</label><br />"
+function displayEconomyPackage(standard_options) {
+
+  html = standard_options
 	     + packageOptionHTML("documentation", 10, "yes", "Include Documentation");
 
 
@@ -168,51 +172,27 @@ function displayEconomyPackage() {
 	
 }
 
-function displayStandardPackage() {
+function displayStandardPackage(standard_options) {
 	
-	html = "<label for='delivery_time'>Delivery Time: Up to 1 month</label><br />"
-	     + "<label for='initial_consultation'>Initial Consultation: Free</label><br />"
-	     + "<label for='delivery_guarantee'>Delivery Time & Budget Guarantee: Yes</label><br />"
-	     + "<label for='money_back_guarantee'>Money Back Satisfaction Guarantee: Yes</label><br />"
-	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
-	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
-	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 2 months</label><br />"
+	html = standard_options
 	     + packageOptionHTML("documentation", 10, "yes", "Include Documentation");
 	$("#package_details").html(html);
 }
 
-function displayPriorityPackage() {
-	html = "<label for='delivery_time'>Delivery Time: Up to 2 weeks</label><br />"
-	     + "<label for='initial_consultation'>Initial Consultation: Free</label><br />"
-	     + "<label for='delivery_guarantee'>Delivery Time & Budget Guarantee: Yes</label><br />"
-	     + "<label for='money_back_guarantee'>Money Back Satisfaction Guarantee: Yes</label><br />"
-	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
-	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
-	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 3 months</label><br />"
+function displayPriorityPackage(standard_options) {
+	html = standard_options
 	     + packageOptionHTML("documentation", 10, "yes", "Include Documentation");
 	$("#package_details").html(html);
 }
 
-function displayExpressPackage() {
-	html = "<label for='delivery_time'>Delivery Time: Up to 1 week</label><br />"
-	     + "<label for='initial_consultation'>Initial Consultation: Free</label><br />"
-	     + "<label for='delivery_guarantee'>Delivery Time & Budget Guarantee: Yes</label><br />"
-	     + "<label for='money_back_guarantee'>Money Back Satisfaction Guarantee: Yes</label><br />"
-	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
-	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
-	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 6 months</label><br />"
+function displayExpressPackage(standard_options) {
+	html = standard_options
 	     + packageOptionHTML("documentation", 10, "yes", "Include Documentation");
 	$("#package_details").html(html);
 }
 
-function displaySpecialPackage() {
-	html = "<label for='delivery_time'>Delivery Time: Up to 3 days</label><br />"
-	     + "<label for='initial_consultation'>Initial Consultation: Free</label><br />"
-	     + "<label for='delivery_guarantee'>Delivery Time & Budget Guarantee: Yes</label><br />"
-	     + "<label for='money_back_guarantee'>Money Back Satisfaction Guarantee: Yes</label><br />"
-	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
-	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
-	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 12 months</label><br />"
+function displaySpecialPackage(standard_options) {
+	html = standard_options
 	     + packageOptionHTML("documentation", 10, "yes", "Include Documentation");	
 	$("#package_details").html(html);
 }
