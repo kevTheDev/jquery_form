@@ -210,23 +210,47 @@ function subtractCostFromTotal(cost) {
 	$("#iteration_total_cost").text(new_cost);	
 }
 
+// currently_included should be yes or no
+// default is yes
+function packageOptionHTML(option_name, cost, currently_included) {
+	
+	if(currently_included == "no") {
+		
+		html = "<p id='documentation_option' cost='" + cost + "' currently_included='no' >"
+	       + "<label for='" + option_name + "'>Include Documentation</label><br />"
+	       + "<input type='radio' name='" + option_name + "' action='add' class='package_option' />Yes "
+	       + "<label>+" + cost + "</label><br />"
+	       + "<input type='radio' name='" + option_name + "' action='remove' class='package_option' checked='checked' />No "
+	       + "<label>included</label><br />"
+	       + "</p>"
+	}
+	else { // currently included == yes
+		
+		html = "<p id='documentation_option' cost='" + cost + "' currently_included='yes' >"
+	       + "<label for='" + option_name + "'>Include Documentation</label><br />"
+	       + "<input type='radio' name='" + option_name + "' action='add' class='package_option' checked='checked'/>Yes "
+	       + "<label id='include_documentation_cost'>included</label><br />"
+	       + "<input type='radio' name='" + option_name + "' action='remove' class='package_option' />No "
+	       + "<label id='exclude_documentation_cost'>-" + cost + "</label><br />"
+	       + "</p>"
+	}
+	
+	return html;
+	
+}
+
 function displayEconomyPackage() {
-	
-	
-	html = "<label for='delivery_time'>Delivery Time: On Application</label><br />"
+
+  html = "<label for='delivery_time'>Delivery Time: On Application</label><br />"
 	     + "<label for='initial_consultation'>Initial Consultation: Free</label><br />"
 	     + "<label for='delivery_guarantee'>Delivery Time & Budget Guarantee: Yes</label><br />"
 	     + "<label for='money_back_guarantee'>Money Back Satisfaction Guarantee: Yes</label><br />"
 	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
 	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
 	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 30 days</label><br />"
-	     + "<p id='documentation_option' cost='10' currently_included='yes' >"
-	     + "<label for='documentation'>Include Documentation</label><br />"
-	     + "<input type='radio' name='documentation' value='include' action='add' id='include_documentation' class='package_option' cost='10' currently_included='yes' checked='checked'/>Yes "
-	     + "<label id='include_documentation_cost'>included</label><br />"
-       + "<input type='radio' name='documentation' value='exclude' action='remove' id='exclude_documentation' class='package_option' cost='10' currently_included='no' />No "
-       + "<label id='exclude_documentation_cost'>-10</label><br />"
-       + "</p>"
+	     + packageOptionHTML("documentation", 10, "yes");
+
+
 	$("#package_details").html(html);
 	
 }
