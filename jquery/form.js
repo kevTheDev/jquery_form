@@ -195,35 +195,19 @@ function initPackageOptions() {
 	});
 }
 
+function currentCost() {
+	current_cost = $("#iteration_total_cost").text();
+	return  parseFloat(current_cost);
+}
 
 function addCostToTotal(cost) {
-	//alert("ADD " +cost);
-	
-	current_cost = $("#iteration_total_cost").text();
-	current_cost = parseFloat(current_cost);
-	
-	
-	//alert("current COST: "+current_cost);
-	//alert("COST to add: "+cost);
-	
-	//alert("current cost class: "+typeof(parseInt(current_cost)));
-	//alert("cost class: "+typeof(cost));
-	
-	new_cost = parseFloat(current_cost) + cost
-	//alert("new_cost: "+new_cost);
+	new_cost = currentCost() + cost
 	$("#iteration_total_cost").text(new_cost);
 }
 
 function subtractCostFromTotal(cost) {
-	//alert("SUBTRACT " +cost);
-	current_cost = $("#iteration_total_cost").parseNumber();
-	current_cost = parseFloat(current_cost);
-	
-	
-	new_cost = current_cost - cost;
-	//alert("new_cost: "+new_cost);
-	$("#iteration_total_cost").text(new_cost);
-	
+	new_cost = currentCost() - cost;
+	$("#iteration_total_cost").text(new_cost);	
 }
 
 function displayEconomyPackage() {
