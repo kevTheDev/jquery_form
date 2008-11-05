@@ -58,6 +58,14 @@ function displayPackageDetails(package_details) {
 		break;
 	}
 
+  initPackageOptions();
+
+}
+
+function initPackageOptions() {
+	$(".package_option").click(function(){
+		alert("selected package option");
+	});
 }
 
 function displayEconomyPackage() {
@@ -70,6 +78,9 @@ function displayEconomyPackage() {
 	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
 	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
 	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 30 days</label><br />"
+	     + "<label for='documentation'>Documentation</label><br />"
+	     + "<input type='radio' name='documentation' value='yes' id='include_documentation' class='package_option' cost='10' />"
+       + "<input type='radio' name='documentation' value='no' id='include_documentation' class='package_option' cost='10' />"
 	$("#package_details").html(html);
 	
 }
