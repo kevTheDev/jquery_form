@@ -64,7 +64,52 @@ function displayPackageDetails(package_details) {
 
 function initPackageOptions() {
 	$(".package_option").click(function(){
-		alert("selected package option");
+		
+		cost = $(this).attr("cost");
+		included_by_default = $(this).attr("included_by_default");		
+		value = $(this).attr("value");
+		name = $(this).attr("name");
+		
+		if(value == "include") {
+			
+			cost_label_id = "include_" + name + "_cost";
+		  cost_label = $("#" + cost_label_id);
+		  
+		  partner_cost_label_id = "exclude_" + name + "_cost";
+			partner_cost_label = $("#" + partner_cost_label_id);
+
+			if(included_by_default == "yes") {
+				
+				cost_label.text("included");
+				partner_cost_label.text("+" + cost);
+				
+			}
+			else {
+				
+				cost_label.text("+" + cost);
+				partner_cost_label.text("included");
+			}			
+			
+		}
+		else {
+			
+			cost_label_id = "exclude_" + name + "_cost";
+		  cost_label = $("#" + cost_label_id);
+		  
+		  partner_cost_label_id = "include_" + name + "_cost";
+			partner_cost_label = $("#" + partner_cost_label_id);
+			
+			if(included_by_default == "yes") {
+				cost_label.text("-" + cost);
+				partner_cost_label.text("included");
+			}
+			else {
+				partner_cost_label.text("+" + cost);
+				cost_label.text("included");
+			}
+		}
+		
+		
 	});
 }
 
@@ -79,8 +124,10 @@ function displayEconomyPackage() {
 	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
 	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 30 days</label><br />"
 	     + "<label for='documentation'>Documentation</label><br />"
-	     + "<input type='radio' name='documentation' value='yes' id='include_documentation' class='package_option' cost='10' />"
-       + "<input type='radio' name='documentation' value='no' id='include_documentation' class='package_option' cost='10' />"
+	     + "<input type='radio' name='documentation' value='include' id='include_documentation' class='package_option' cost='10' included_by_default='no' />Yes "
+	     + "<label id='include_documentation_cost'></label><br />"
+       + "<input type='radio' name='documentation' value='exclude' id='exclude_documentation' class='package_option' cost='10' included_by_default='yes' />No "
+       + "<label id='exclude_documentation_cost'></label><br />"
 	$("#package_details").html(html);
 	
 }
