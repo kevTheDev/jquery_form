@@ -1,42 +1,27 @@
 $(document).ready(function() { 
-  
-	economy_check = $("#economy_check");
-	standard_check = $("#standard_check");
-	priority_check = $("#priority_check");
-	express_check = $("#express_check");
-	special_check = $("#special_check");
 	
-	total_cost = $("#iteration_total_cost");
-	
-	
-	
-	
-	economy_check.click(function(){
-		total_cost.text("1000");		
-		displayPackageDetails("economy");
-	});
-	
-	standard_check.click(function(){
-		total_cost.text("1250");
-		displayPackageDetails("standard");
-	});
-	
-	priority_check.click(function(){
-		total_cost.text("1500");
-		displayPackageDetails("priority");
-	});
-	
-	express_check.click(function(){
-		total_cost.text("2000");
-		displayPackageDetails("express");
-	});
-	
-	special_check.click(function(){
-		total_cost.text("3000");
-		displayPackageDetails("special");
-	});
+	setupPackageChoices();	
   
 });
+
+function setupPackageChoices() {
+	total_cost = $("#iteration_total_cost");
+	
+	package_choices = $(".package_choice");
+	
+	package_choices.click(function() {
+		//total_cost.text("2000");
+		package_name = $(this).attr("value");
+		label_id = package_name + "_check_label";
+		label = $("#" + label_id);
+		
+		cost = label.parseNumber();
+		
+		total_cost.text(""+cost);
+		displayPackageDetails(package_name);
+	})
+	
+}
 
 function displayPackageDetails(package_details) {
 	
