@@ -67,7 +67,7 @@ function initPackageOptions() {
 	$(".package_option").click(function(){
 		  
 	  option_name = $(this).attr("name");
-	
+	  option_title = $("#" + option_name + "_label").text();
 	
 	  parent_element = $("#" + option_name + "_option");	
 	  cost = parent_element.attr("cost");
@@ -83,7 +83,7 @@ function initPackageOptions() {
 		  if(currently_included == "no") {  // add option to package
 			  parent_element.attr("currently_included", "yes");
 			
-         html = packageOptionChoiceHTML(option_name, cost, "yes");
+         html = packageOptionChoiceHTML(option_name, cost, "yes", option_title);
 			
 			   parent_element.html(html);
 			   initPackageOptions();
@@ -97,7 +97,7 @@ function initPackageOptions() {
 		  if(currently_included == "yes") {
 			  parent_element.attr("currently_included", "no");
 	
-	      html = packageOptionChoiceHTML(option_name, cost, "no");
+	      html = packageOptionChoiceHTML(option_name, cost, "no", option_title);
 	
 	      parent_element.html(html);
       	initPackageOptions();
@@ -125,10 +125,10 @@ function subtractCostFromTotal(cost) {
 	$("#iteration_total_cost").text(new_cost);	
 }
 
-function packageOptionChoiceHTML(option_name, cost, currently_included) {
+function packageOptionChoiceHTML(option_name, cost, currently_included, option_title) {
 	if(currently_included == "no") {
 		
-		html = "<label for='" + option_name + "'>Include Documentation</label><br />"
+		html = "<label for='" + option_name + "' id='" + option_name + "_label'>" + option_title +"</label><br />"
 	       + "<input type='radio' name='" + option_name + "' action='add' class='package_option' />Yes "
 	       + "<label>+" + cost + "</label><br />"
 	       + "<input type='radio' name='" + option_name + "' action='remove' class='package_option' checked='checked' />No "
@@ -136,7 +136,7 @@ function packageOptionChoiceHTML(option_name, cost, currently_included) {
 	}
 	else { // currently included == yes
 		
-		html = "<label for='" + option_name + "'>Include Documentation</label><br />"
+		html = "<label for='" + option_name + "' id='" + option_name + "_label'>" + option_title +"</label><br />"
 	       + "<input type='radio' name='" + option_name + "' action='add' class='package_option' checked='checked'/>Yes "
 	       + "<label id='include_documentation_cost'>included</label><br />"
 	       + "<input type='radio' name='" + option_name + "' action='remove' class='package_option' />No "
@@ -148,18 +148,18 @@ function packageOptionChoiceHTML(option_name, cost, currently_included) {
 
 // currently_included should be yes or no
 // default is yes
-function packageOptionHTML(option_name, cost, currently_included) {
+function packageOptionHTML(option_name, cost, currently_included, option_title) {
 	
 	if(currently_included == "no") {
 		
 		html = "<p id='documentation_option' cost='" + cost + "' currently_included='no' >"
-	       + packageOptionChoiceHTML(option_name, cost, currently_included)
+	       + packageOptionChoiceHTML(option_name, cost, currently_included, option_title)
 	       + "</p>"
 	}
 	else { // currently included == yes
 		
 		html = "<p id='documentation_option' cost='" + cost + "' currently_included='yes' >"
-	       + packageOptionChoiceHTML(option_name, cost, currently_included)
+	       + packageOptionChoiceHTML(option_name, cost, currently_included, option_title)
 	       + "</p>"
 	}
 	
@@ -176,7 +176,7 @@ function displayEconomyPackage() {
 	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
 	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
 	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 30 days</label><br />"
-	     + packageOptionHTML("documentation", 10, "yes");
+	     + packageOptionHTML("documentation", 10, "yes", "Include Documentation");
 
 
 	$("#package_details").html(html);
@@ -192,7 +192,7 @@ function displayStandardPackage() {
 	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
 	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
 	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 2 months</label><br />"
-	     + packageOptionHTML("documentation", 10, "yes");
+	     + packageOptionHTML("documentation", 10, "yes", "Include Documentation");
 	$("#package_details").html(html);
 }
 
@@ -204,7 +204,7 @@ function displayPriorityPackage() {
 	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
 	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
 	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 3 months</label><br />"
-	     + packageOptionHTML("documentation", 10, "yes");
+	     + packageOptionHTML("documentation", 10, "yes", "Include Documentation");
 	$("#package_details").html(html);
 }
 
@@ -216,7 +216,7 @@ function displayExpressPackage() {
 	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
 	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
 	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 6 months</label><br />"
-	     + packageOptionHTML("documentation", 10, "yes");
+	     + packageOptionHTML("documentation", 10, "yes", "Include Documentation");
 	$("#package_details").html(html);
 }
 
@@ -228,25 +228,7 @@ function displaySpecialPackage() {
 	     + "<label for='hosting_included'>Hosting Included: 30 days</label><br />"
 	     + "<label for='project_management_tool'>Project Management Tool: Yes</label><br />"
 	     + "<label for='extended_project_management'>Extended use of Project Management Tool: delivery + 12 months</label><br />"
-	     + packageOptionHTML("documentation", 10, "yes");	
+	     + packageOptionHTML("documentation", 10, "yes", "Include Documentation");	
 	$("#package_details").html(html);
 }
 
-
-
-
-
-function initPackageCheckBoxes() {
-	
-	budget_checkbox = $("#budget_check");
-	premium_checkbox = $("#premium_check");
-	
-	budget_checkbox.click(function(){
-		alert("BUDGET CLICKED");
-	});
-	
-	premium_checkbox.click(function(){
-		alert("PREMIUM CLICKED");
-	});
-	
-}
